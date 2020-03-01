@@ -20,42 +20,38 @@
   <script type="text/javascript" language="javascript" src="./scripts/main.js"></script>
   <noscript>Your browser does not support JavaScript!</noscript>
 <script>
-window.onload = function () {
 
+window.onload = function () {
+	
 var chart = new CanvasJS.Chart("chartContainer", {
-	exportEnabled: true,
 	animationEnabled: true,
+	
 	title:{
-		text: " Star Wars Movies "
+		text:"Star Wars Movies"
 	},
-	legend:{
-		cursor: "pointer",
-		itemclick: explodePie
+	axisX:{
+		interval: 1
+	},
+	axisY2:{
+		interlacedColor: "rgba(1,77,101,.2)",
+		gridColor: "rgba(1,77,101,.1)",
+		title: "Movies"
 	},
 	data: [{
-		type: "pie",
-		showInLegend: true,
-		toolTipContent: "{name}: <strong>{y}%</strong>",
-		indexLabel: "{name} - {y}%",
+		type: "bar",
+		name: "movies",
+		axisYType: "secondary",
+		color: "#014D65",
 		dataPoints: [
-			{ y: 92, name: "New Hope", },
-			{ y: 71, name: "Return of the Jedi" },
-			{ y: 84, name: "The Empire Strikes Back" },
+			{ y: 92, label: "New Hope" },
+			{ y: 74, label: "The Empire Strikes Back" },
+			{ y: 81, label: "Return of the Jedi" }
 		]
 	}]
 });
 chart.render();
 }
 
-function explodePie (e) {
-	if(typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
-		e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
-	} else {
-		e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
-	}
-	e.chart.render();
-
-}
 </script>
 
 </head>
@@ -70,7 +66,7 @@ function explodePie (e) {
 				<section class="message-output">
 				  <span class="response">The Star Wars API</span>
 				</section>
-			</header><div id="chartContainer" style="height: 300px; width: 100%;"></div>
+			<div id="chartContainer" style="height: 300px; width: 100%;"></div>
 			<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 			<footer>
 				<nav class="navigation max-width">
